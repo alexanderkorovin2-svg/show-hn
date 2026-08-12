@@ -581,7 +581,7 @@ export function ShowHnStory() {
       <main>
         <section className="hero">
           <p className="eyebrow">Data story · August 2026</p>
-          <h1>Show HN volume hit 6×. <span>20-point successes barely moved.</span></h1>
+          <h1>Show HN volume increased 6×, <span>while the number of successful submissions barely moved.</span></h1>
           <p className="dek">
             From ChatGPT&apos;s launch month to the February 2026 peak, monthly Show HN
             submissions jumped from 917 to 5,817—a 6.3× increase. Posts reaching
