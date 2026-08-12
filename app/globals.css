@@ -602,6 +602,17 @@ h1 span {
   font-size: 9px;
 }
 
+.methodology dd a {
+  color: var(--ink);
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.methodology dd a:hover {
+  color: var(--orange);
+}
+
 footer {
   margin: 44px 34px 0;
   padding: 18px 0 26px;

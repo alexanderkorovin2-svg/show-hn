@@ -33,15 +33,19 @@ This builds the site and runs rendered-page checks.
 
 - **Show HN:** a surviving URL story whose normalized title begins with
   `Show HN`, with or without a colon.
-- **All URL submissions:** surviving URL stories in the local OpenIndex Hacker
-  News archive; text-only submissions such as Ask HN are not included.
+- **All URL submissions:** surviving URL stories downloaded as yearly Parquet
+  files from the [OpenIndex Hacker News dataset on Hugging Face](https://huggingface.co/datasets/open-index/hacker-news);
+  text-only submissions such as Ask HN are not included.
 - **Successful Show HN:** a qualifying Show HN with a recorded score of at
   least 20 points.
 - **Pre/post windows:** equal 12-month windows surrounding the ChatGPT and
   Claude Code milestones.
 
-The page embeds aggregated monthly data derived from the local archive; it does
-not include or require the multi-gigabyte source database.
+The historical archive was read from OpenIndex and materialized locally in
+DuckDB. Recent stories and scores were refreshed through August 12, 2026 using
+the [Algolia HN Search API](https://hn.algolia.com/api). The page embeds only
+the resulting monthly aggregates; it does not include or require the
+multi-gigabyte source database.
 
 ## Stack
 

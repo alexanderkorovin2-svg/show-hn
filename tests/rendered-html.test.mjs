@@ -37,6 +37,8 @@ test("server-renders the Show HN data story", async () => {
   assert.match(html, /20-point Show HNs barely moved by comparison/i);
   assert.doesNotMatch(html, /Submission growth outran 20-point posts|What the data supports/);
   assert.match(html, /What counts—and what does not/);
+  assert.match(html, /href="https:\/\/huggingface\.co\/datasets\/open-index\/hacker-news"/);
+  assert.match(html, /href="https:\/\/hn\.algolia\.com\/api"/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 

@@ -647,7 +647,15 @@ export function ShowHnStory() {
             <div><dt>All submissions</dt><dd>Surviving, non-dead URL stories. Ask HN and other text-only stories are not in this local archive, so the denominator is labeled accordingly.</dd></div>
             <div><dt>Successful Show HN</dt><dd>A qualifying Show HN with a recorded score of at least 20 points. This is a proxy for HN reception, not a judgment of intrinsic product quality.</dd></div>
             <div><dt>Pre/post windows</dt><dd>Equal 12-month windows ending immediately before and beginning in the launch month. They describe timing; they do not isolate causal effects.</dd></div>
-            <div><dt>Source</dt><dd>The local OpenIndex Hacker News archive, materialized in DuckDB and refreshed through August 12, 2026. Monthly charts stop at July 2026, the latest complete month. Incomplete December 2022 point totals were repaired from Algolia and Hacker News item records.</dd></div>
+            <div>
+              <dt>Source</dt>
+              <dd>
+                The historical archive was downloaded as yearly Parquet files from OpenIndex&apos;s{" "}
+                <a href="https://huggingface.co/datasets/open-index/hacker-news">open-index/hacker-news dataset on Hugging Face</a>
+                {" "}and materialized locally in DuckDB. Recent stories and scores were refreshed through August 12, 2026 from the{" "}
+                <a href="https://hn.algolia.com/api">Algolia HN Search API</a>. Monthly charts stop at July 2026, the latest complete month; incomplete December 2022 point totals were checked against Algolia and Hacker News item records.
+              </dd>
+            </div>
           </dl>
         </section>
       </main>
