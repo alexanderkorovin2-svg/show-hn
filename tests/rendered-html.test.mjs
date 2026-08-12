@@ -39,6 +39,11 @@ test("server-renders the Show HN data story", async () => {
   assert.match(html, /January 2018–July 2026/);
   assert.match(html, /Show HN became a much larger slice of Hacker News/);
   assert.match(html, /Show HN submissions increased by as much as 6\.3x at peak volume/);
+  assert.ok(
+    html.indexOf("Show HN submissions increased by as much as 6.3x at peak volume") <
+      html.indexOf("Show HN became a much larger slice of Hacker News"),
+    "volume section should render before share section",
+  );
   assert.match(html, /Monthly submissions and Show HN volume/);
   assert.doesNotMatch(html, /Monthly URL stories and Show HN volume/);
   assert.match(html, /the share of successful Show HN submissions \(20\+ points\) remained relatively flat/i);

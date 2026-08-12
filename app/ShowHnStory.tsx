@@ -587,23 +587,10 @@ export function ShowHnStory() {
           </p>
         </section>
 
-        <section className="chart-section" aria-labelledby="share-title">
-          <header className="section-heading">
-            <div>
-              <span className="section-number">01.</span>
-              <div>
-                <h2 id="share-title">Show HN became a much larger slice of Hacker News</h2>
-                <p>Monthly share of all surviving URL-story submissions. Hover or use the month slider.</p>
-              </div>
-            </div>
-          </header>
-          <ShareChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
-        </section>
-
         <section className="chart-section" aria-labelledby="volume-title">
           <header className="section-heading">
             <div>
-              <span className="section-number">02.</span>
+              <span className="section-number">01.</span>
               <div>
                 <h2 id="volume-title">Show HN submissions increased by as much as 6.3x at peak volume</h2>
                 <p>The panels use separate scales but share the same timeline and selected month.</p>
@@ -611,6 +598,19 @@ export function ShowHnStory() {
             </div>
           </header>
           <VolumeChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
+        </section>
+
+        <section className="chart-section" aria-labelledby="share-title">
+          <header className="section-heading">
+            <div>
+              <span className="section-number">02.</span>
+              <div>
+                <h2 id="share-title">Show HN became a much larger slice of Hacker News</h2>
+                <p>Monthly share of all surviving URL-story submissions. Hover or use the month slider.</p>
+              </div>
+            </div>
+          </header>
+          <ShareChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
         </section>
 
         <section className="chart-section" aria-labelledby="success-title">
