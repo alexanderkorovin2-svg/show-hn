@@ -556,7 +556,6 @@ export function ShowHnStory() {
           <strong>orangecrumbs</strong>
         </a>
         <span className="topbar-note">Data stories for Hacker News</span>
-        <a className="topbar-link" href="#methodology">Methodology ↓</a>
       </header>
 
       <main>

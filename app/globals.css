@@ -83,16 +83,8 @@ input:focus-visible {
   line-height: 1;
 }
 
-.topbar-note,
-.topbar-link {
+.topbar-note {
   font-size: 10px;
-}
-
-.topbar-link {
-  margin-left: auto;
-  font-weight: 700;
-  text-decoration: none;
-  text-transform: uppercase;
 }
 
 main {
