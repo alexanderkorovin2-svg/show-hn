@@ -624,10 +624,6 @@ export function ShowHnStory() {
             </div>
           </header>
           <SuccessChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
-          <aside className="chart-takeaway success-takeaway">
-            <span>Volume surged; hits did not</span>
-            <p><strong>At the February 2026 peak, 211 Show HNs reached 20 points versus 128 in ChatGPT&apos;s launch month.</strong> Across equal Claude Code windows, 20-point posts rose just 8% while submissions rose 89%.</p>
-          </aside>
         </section>
 
         <section className="methodology" id="methodology" aria-labelledby="methodology-title">
