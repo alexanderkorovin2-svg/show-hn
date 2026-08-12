@@ -57,7 +57,7 @@ test("server-renders the Show HN data story", async () => {
   assert.doesNotMatch(html, /20\+ posts \/ month, latest 12m/i);
   assert.doesNotMatch(html, /Volume surged; hits did not/i);
   assert.doesNotMatch(html, /Submission growth outran 20-point posts|What the data supports/);
-  assert.match(html, /What counts—and what does not/);
+  assert.doesNotMatch(html, /What counts—and what does not/);
   assert.doesNotMatch(html, /Pre\/post windows/);
   assert.match(html, /href="https:\/\/huggingface\.co\/datasets\/open-index\/hacker-news"/);
   assert.match(html, /href="https:\/\/hn\.algolia\.com\/api"/);

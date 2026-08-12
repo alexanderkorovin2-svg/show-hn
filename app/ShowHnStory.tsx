@@ -613,10 +613,9 @@ export function ShowHnStory() {
           <SuccessChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
         </section>
 
-        <section className="methodology" id="methodology" aria-labelledby="methodology-title">
+        <section className="methodology" id="methodology" aria-label="Methodology">
           <div>
             <span>Methodology</span>
-            <h2 id="methodology-title">What counts—and what does not</h2>
           </div>
           <dl>
             <div><dt>Show HN</dt><dd>A surviving URL story whose normalized title begins with “Show HN,” with or without a colon.</dd></div>

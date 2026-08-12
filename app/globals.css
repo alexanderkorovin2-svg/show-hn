@@ -482,11 +482,6 @@ h1 span {
   text-transform: uppercase;
 }
 
-.methodology h2 {
-  margin: 4px 0 0;
-  font-size: 21px;
-}
-
 .methodology {
   display: grid;
   grid-template-columns: 0.7fr 1.6fr;
