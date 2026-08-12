@@ -713,12 +713,7 @@ export function ShowHnStory() {
             </div>
           </header>
           <VolumeChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
-          <div className="finding-grid">
-            <article>
-              <span>More builders, not just more repeat posts</span>
-              <strong>Submitters rose almost as quickly as submissions.</strong>
-              <p>The average number of Show HNs per participating account barely changed across the Claude Code comparison windows.</p>
-            </article>
+          <div className="finding-grid is-single">
             <article>
               <span>Not site-wide traffic</span>
               <strong>All URL submissions rose only 22% over the same launch-to-peak comparison.</strong>

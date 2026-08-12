@@ -556,6 +556,10 @@ h1 span {
   border-top: 1px solid var(--line);
 }
 
+.finding-grid.is-single {
+  grid-template-columns: 1fr;
+}
+
 .finding-grid article {
   min-height: 158px;
   padding: 20px 22px;
