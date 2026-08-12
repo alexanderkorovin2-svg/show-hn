@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 
-const title = "Show HN after AI coding — OrangeCrumbs";
+const title = "Show HN volume surged; 20-point posts barely moved — OrangeCrumbs";
 const description =
-  "An interactive look at how Show HN submissions changed after ChatGPT and Claude Code.";
+  "Show HN submissions peaked at 6.3× their ChatGPT-launch level, while posts reaching 20 points grew far less.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
   const host = requestHeaders.get("host") ?? "localhost:3002";
   const protocol = requestHeaders.get("x-forwarded-proto") ?? "http";
   const baseUrl = new URL(`${protocol}://${host}`);
-  const imageUrl = new URL("/og.png", baseUrl).toString();
+  const imageUrl = new URL("/og-v2.png", baseUrl).toString();
 
   return {
     metadataBase: baseUrl,

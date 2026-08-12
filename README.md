@@ -1,9 +1,10 @@
-# Show HN after AI coding
+# Show HN volume surged; 20-point posts barely moved
 
-An interactive OrangeCrumbs data story exploring how Show HN changed after
-ChatGPT and Claude Code. It compares Show HN volume with all surviving Hacker
-News URL submissions, tracks distinct submitters, and measures the share of
-Show HNs reaching at least 20 points.
+An interactive OrangeCrumbs data story about the widening gap between Show HN
+submission volume and posts that receive meaningful attention. Monthly Show HN
+volume peaked at 6.3× its ChatGPT-launch level, while posts reaching 20 points
+grew far less. The story compares raw volume, distinct submitters, and 20-point
+posts across the ChatGPT and Claude Code milestones.
 
 The monthly series runs from January 2018 through July 2026. August 2026 is
 excluded because it is incomplete. Launch dates are contextual annotations,

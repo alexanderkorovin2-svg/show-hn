@@ -227,8 +227,8 @@ export const MILESTONES = [
     displayDate: "Nov 30, 2022",
     preLabel: "Dec 2021–Nov 2022",
     postLabel: "Dec 2022–Nov 2023",
-    pre: { total: 274763, show: 9420, authors: 6271, share: 3.43 },
-    post: { total: 297501, show: 13149, authors: 8469, share: 4.42 },
+    pre: { total: 274763, show: 9420, successful: 1396, authors: 6271, share: 3.43, successRate: 14.82 },
+    post: { total: 297501, show: 13149, successful: 1563, authors: 8469, share: 4.42, successRate: 11.89 },
   },
   {
     id: "claude-code",
@@ -237,7 +237,7 @@ export const MILESTONES = [
     displayDate: "Feb 24, 2025",
     preLabel: "Mar 2024–Feb 2025",
     postLabel: "Mar 2025–Feb 2026",
-    pre: { total: 274331, show: 17837, authors: 11553, share: 6.5 },
-    post: { total: 302103, show: 33714, authors: 21557, share: 11.16 },
+    pre: { total: 274331, show: 17837, successful: 1895, authors: 11553, share: 6.5, successRate: 10.62 },
+    post: { total: 302103, show: 33714, successful: 2045, authors: 21557, share: 11.16, successRate: 6.07 },
   },
 ] as const;

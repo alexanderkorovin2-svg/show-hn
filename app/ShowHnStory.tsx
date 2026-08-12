@@ -21,8 +21,7 @@ type DataRow = {
   share: number;
   rollingShare: number | null;
   successful: number;
-  successfulOverallShare: number;
-  rollingSuccessfulOverallShare: number | null;
+  rollingSuccessfulAverage: number | null;
 };
 
 const numberFormatter = new Intl.NumberFormat("en-US");
@@ -68,9 +67,7 @@ const DATA: readonly DataRow[] = MONTHLY_DATA.map(
       share: (show / total) * 100,
       rollingShare: index >= 11 ? (rollingShow / rollingTotal) * 100 : null,
       successful,
-      successfulOverallShare: (successful / total) * 100,
-      rollingSuccessfulOverallShare:
-        index >= 11 ? (rollingSuccessful / rollingTotal) * 100 : null,
+      rollingSuccessfulAverage: index >= 11 ? rollingSuccessful / 12 : null,
     };
   },
 );
@@ -440,22 +437,22 @@ function SuccessChart({
   const plotWidth = WIDTH - CHART_MARGIN.left - CHART_MARGIN.right;
   const x = (index: number) =>
     CHART_MARGIN.left + (index / (DATA.length - 1)) * plotWidth;
-  const successfulPanel = { top: 50, bottom: 300, max: 1 };
+  const successfulPanel = { top: 50, bottom: 300, max: 250 };
   const ySuccessful = (value: number) =>
     successfulPanel.top +
     ((successfulPanel.max - value) / successfulPanel.max) *
       (successfulPanel.bottom - successfulPanel.top);
   const active = DATA[selectedIndex];
   const activeX = x(selectedIndex);
-  const activeSuccessfulShare =
-    active.rollingSuccessfulOverallShare ?? active.successfulOverallShare;
+  const activeSuccessfulCount =
+    active.rollingSuccessfulAverage ?? active.successful;
   const monthlySuccessfulPath = pathFor(DATA, x, (row) =>
-    ySuccessful(row.successfulOverallShare),
+    ySuccessful(row.successful),
   );
   const rollingSuccessfulPath = pathFor(DATA, x, (row) =>
-    row.rollingSuccessfulOverallShare === null
+    row.rollingSuccessfulAverage === null
       ? null
-      : ySuccessful(row.rollingSuccessfulOverallShare),
+      : ySuccessful(row.rollingSuccessfulAverage),
   );
   const yearTicks = DATA.filter(
     (row) => row.month.endsWith("-01") && Number(row.month.slice(0, 4)) % 2 === 0,
@@ -474,8 +471,9 @@ function SuccessChart({
   return (
     <div className="chart-body success-chart-body">
       <div className="chart-legend" aria-label="Chart legend">
-        <span><i className="legend-line is-monthly" />Monthly share</span>
-        <span><i className="legend-line is-successful" />20+ Show HN, rolling 12 months</span>
+        <span><i className="legend-line is-monthly" />Monthly 20+ posts</span>
+        <span><i className="legend-line is-successful" />12-month monthly average</span>
+        <span><i className="legend-line is-event" />AI product launch</span>
       </div>
 
       <div className="chart-canvas">
@@ -485,18 +483,19 @@ function SuccessChart({
           role="img"
           aria-labelledby="success-chart-title success-chart-desc"
         >
-          <title id="success-chart-title">Successful Show HN share of all URL stories</title>
+          <title id="success-chart-title">Monthly Show HN posts reaching 20 points</title>
           <desc id="success-chart-desc">
-            Monthly and rolling 12-month shares show that Show HN stories reaching
-            20 points remained a relatively flat share of all URL stories.
+            Monthly counts and the rolling 12-month monthly average show that the
+            number of Show HN stories reaching 20 points moved far less than total
+            Show HN submission volume.
           </desc>
-          <text className="panel-label" x={CHART_MARGIN.left} y="27">20+ SHOW HN / ALL URL STORIES</text>
+          <text className="panel-label" x={CHART_MARGIN.left} y="27">SHOW HN POSTS REACHING 20+ POINTS</text>
           <text className="panel-value is-successful" x={WIDTH - CHART_MARGIN.right} y="27" textAnchor="end">
-            {active.rollingSuccessfulOverallShare === null ? "Monthly" : "12-month"}: {formatShare(activeSuccessfulShare)} in {formatMonth(active.month)}
+            {active.rollingSuccessfulAverage === null ? "Monthly" : "12-month average"}: {formatNumber(activeSuccessfulCount)} per month in {formatMonth(active.month)}
           </text>
 
-          {[0, 0.25, 0.5, 0.75, 1].map((tick) => (
-            <g key={`successful-share-${tick}`}>
+          {[0, 50, 100, 150, 200, 250].map((tick) => (
+            <g key={`successful-count-${tick}`}>
               <line
                 className="grid-line"
                 x1={CHART_MARGIN.left}
@@ -510,7 +509,7 @@ function SuccessChart({
                 y={ySuccessful(tick) + 4}
                 textAnchor="end"
               >
-                {tick === 0 ? "0%" : `${tick.toFixed(2).replace(/0$/, "")}%`}
+                {tick}
               </text>
             </g>
           ))}
@@ -546,7 +545,7 @@ function SuccessChart({
           <circle
             className="active-point is-successful"
             cx={activeX}
-            cy={ySuccessful(activeSuccessfulShare)}
+            cy={ySuccessful(activeSuccessfulCount)}
             r="5"
           />
           <rect
@@ -576,15 +575,15 @@ function MilestoneComparison() {
       format: formatNumber,
     },
     {
-      label: "All URL submissions",
-      before: milestone.pre.total,
-      after: milestone.post.total,
+      label: "20+ point Show HNs",
+      before: milestone.pre.successful,
+      after: milestone.post.successful,
       format: formatNumber,
     },
     {
-      label: "Show HN share",
-      before: milestone.pre.share,
-      after: milestone.post.share,
+      label: "20+ point hit rate",
+      before: milestone.pre.successRate,
+      after: milestone.post.successRate,
       format: formatShare,
     },
     {
@@ -601,8 +600,8 @@ function MilestoneComparison() {
         <div>
           <span className="section-number">04.</span>
           <div>
-            <h2 id="comparison-title">Before and after the milestones</h2>
-            <p>Equal 12-month windows. Useful context, not a causal estimate.</p>
+            <h2 id="comparison-title">Submission growth outran 20-point posts</h2>
+            <p>Equal 12-month windows around each milestone. Context, not a causal estimate.</p>
           </div>
         </div>
         <div className="milestone-tabs" role="group" aria-label="Choose milestone">
@@ -630,12 +629,14 @@ function MilestoneComparison() {
       <div className="comparison-grid">
         {metrics.map((metric) => {
           const change = changePercent(metric.before, metric.after);
-          const beforeWidth = Math.min(100, (metric.before / metric.after) * 100);
+          const largest = Math.max(metric.before, metric.after);
+          const beforeWidth = (metric.before / largest) * 100;
+          const afterWidth = (metric.after / largest) * 100;
           return (
             <article className="comparison-card" key={metric.label}>
               <header>
                 <span>{metric.label}</span>
-                <strong>+{change}%</strong>
+                <strong>{change > 0 ? "+" : ""}{change}%</strong>
               </header>
               <div className="comparison-values">
                 <div><small>Before</small><strong>{metric.format(metric.before)}</strong></div>
@@ -643,7 +644,7 @@ function MilestoneComparison() {
               </div>
               <div className="comparison-bars" aria-hidden="true">
                 <i className="bar-before" style={{ width: `${beforeWidth}%` }} />
-                <i className="bar-after" />
+                <i className="bar-after" style={{ width: `${afterWidth}%` }} />
               </div>
             </article>
           );
@@ -659,10 +660,10 @@ export function ShowHnStory() {
     () => DATA[DATA.length - 1].rollingShare ?? DATA[DATA.length - 1].share,
     [],
   );
-  const latestRollingSuccessfulOverallShare = useMemo(
+  const latestRollingSuccessfulAverage = useMemo(
     () =>
-      DATA[DATA.length - 1].rollingSuccessfulOverallShare ??
-      DATA[DATA.length - 1].successfulOverallShare,
+      DATA[DATA.length - 1].rollingSuccessfulAverage ??
+      DATA[DATA.length - 1].successful,
     [],
   );
 
@@ -680,11 +681,11 @@ export function ShowHnStory() {
       <main>
         <section className="hero">
           <p className="eyebrow">Data story · August 2026</p>
-          <h1>Show HN got a lot busier <span>after AI coding took off.</span></h1>
+          <h1>Show HN volume hit 6×. <span>20-point successes barely moved.</span></h1>
           <p className="dek">
-            In the 12 months after Claude Code&apos;s preview, Show HN submissions
-            rose 89%. Overall HN URL submissions rose 10%. Nearly twice as many
-            distinct accounts launched something.
+            From ChatGPT&apos;s launch month to the February 2026 peak, monthly Show HN
+            submissions jumped from 917 to 5,817—a 6.3× increase. Posts reaching
+            20 points rose from 128 to 211, just 1.6×.
           </p>
           <p className="dateline">
             192,390 Show HN posts across 4.45 million surviving URL submissions ·
@@ -693,24 +694,24 @@ export function ShowHnStory() {
 
           <div className="hero-stats" aria-label="Key findings">
             <article>
-              <span>Show HN submissions</span>
-              <strong>+89%</strong>
-              <small>after Claude Code</small>
+              <span>Peak monthly volume</span>
+              <strong>6.3×</strong>
+              <small>917 → 5,817 since ChatGPT</small>
             </article>
             <article>
-              <span>All URL submissions</span>
-              <strong>+10%</strong>
-              <small>over the same windows</small>
+              <span>20+ point posts</span>
+              <strong>1.6×</strong>
+              <small>128 → 211 over the same months</small>
             </article>
             <article>
-              <span>Share of URL stories</span>
-              <strong>6.5% → 11.2%</strong>
-              <small>12 months before vs. after</small>
+              <span>20+ point hit rate</span>
+              <strong>14.0% → 3.6%</strong>
+              <small>ChatGPT launch → peak</small>
             </article>
             <article>
-              <span>Distinct submitters</span>
-              <strong>+87%</strong>
-              <small>11,553 → 21,557</small>
+              <span>Claude Code windows</span>
+              <strong>+89% vs. +8%</strong>
+              <small>all Show HNs vs. 20+ posts</small>
             </article>
           </div>
         </section>
@@ -720,7 +721,7 @@ export function ShowHnStory() {
             <div>
               <span className="section-number">01.</span>
               <div>
-                <h2 id="share-title">Show HN became a larger slice of Hacker News</h2>
+                <h2 id="share-title">Show HN became a much larger slice of Hacker News</h2>
                 <p>Monthly share of all surviving URL-story submissions. Hover or use the month slider.</p>
               </div>
             </div>
@@ -728,8 +729,8 @@ export function ShowHnStory() {
           </header>
           <ShareChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
           <aside className="chart-takeaway">
-            <span>Peak month</span>
-            <p><strong>Nearly one in five URL submissions was a Show HN in February 2026.</strong> The monthly spike later cooled, but the rolling share remained well above its pre-2023 baseline.</p>
+            <span>Sixfold peak</span>
+            <p><strong>February 2026 had 5,817 Show HNs—6.3× November 2022, the month ChatGPT launched.</strong> They accounted for nearly one in five surviving URL submissions.</p>
           </aside>
         </section>
 
@@ -738,7 +739,7 @@ export function ShowHnStory() {
             <div>
               <span className="section-number">02.</span>
               <div>
-                <h2 id="volume-title">The growth was specific to Show HN</h2>
+                <h2 id="volume-title">The sixfold peak came from a much wider launch funnel</h2>
                 <p>The panels use separate scales but share the same timeline and selected month.</p>
               </div>
             </div>
@@ -751,9 +752,9 @@ export function ShowHnStory() {
               <p>The average number of Show HNs per participating account barely changed across the Claude Code comparison windows.</p>
             </article>
             <article>
-              <span>A useful counterexample</span>
-              <strong>Show HN also jumped in spring 2020.</strong>
-              <p>The pandemic-era side-project spike predates ChatGPT, a reminder that product launches are not the only force shaping this series.</p>
+              <span>Not site-wide traffic</span>
+              <strong>All URL submissions rose only 22% over the same launch-to-peak comparison.</strong>
+              <p>Show HN rose 534%, making the divergence specific to the launch funnel rather than HN overall.</p>
             </article>
           </div>
         </section>
@@ -763,16 +764,16 @@ export function ShowHnStory() {
             <div>
               <span className="section-number">03.</span>
               <div>
-                <h2 id="success-title">However, successful Show HNs remained a relatively flat share of HN</h2>
-                <p>Show HN posts reaching 20+ points as a share of all surviving URL-story submissions. Hover to inspect a month.</p>
+                <h2 id="success-title">But 20-point Show HNs barely moved by comparison</h2>
+                <p>Monthly count of Show HN posts reaching 20+ points, with a rolling 12-month monthly average.</p>
               </div>
             </div>
-            <strong className="section-stat">{formatShare(latestRollingSuccessfulOverallShare)}<small>20+ Show HNs / all URL stories</small></strong>
+            <strong className="section-stat">{formatNumber(latestRollingSuccessfulAverage)}<small>20+ posts / month, latest 12m</small></strong>
           </header>
           <SuccessChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
           <aside className="chart-takeaway success-takeaway">
-            <span>More launches, same share of HN successes</span>
-            <p><strong>20-point Show HNs were 0.69% of all URL submissions before Claude Code and 0.68% after.</strong> Their count rose 8%, almost exactly in line with HN overall (+10%), while all Show HN submissions rose 89%.</p>
+            <span>Volume surged; hits did not</span>
+            <p><strong>At the February 2026 peak, 211 Show HNs reached 20 points versus 128 in ChatGPT&apos;s launch month.</strong> Across equal Claude Code windows, 20-point posts rose just 8% while submissions rose 89%.</p>
           </aside>
         </section>
 
@@ -781,11 +782,11 @@ export function ShowHnStory() {
         <section className="interpretation" aria-labelledby="reading-title">
           <header>
             <span>What the data supports</span>
-            <h2 id="reading-title">A bigger launch funnel, not proof that AI caused it</h2>
+            <h2 id="reading-title">A much bigger launch funnel without a matching rise in 20-point posts</h2>
           </header>
           <div className="interpretation-grid">
-            <article><span>01</span><p><strong>Show HN clearly outgrew HN overall.</strong> Normalizing by all URL stories makes the increase hard to explain as site-wide growth alone.</p></article>
-            <article><span>02</span><p><strong>The increase is broad-based.</strong> Distinct submitting accounts rose alongside post volume, consistent with more people building and launching.</p></article>
+            <article><span>01</span><p><strong>The input side exploded.</strong> Show HN reached 6.3× its ChatGPT-launch volume, while HN URL submissions rose only 22% over the same monthly comparison.</p></article>
+            <article><span>02</span><p><strong>The visible-success count barely kept pace.</strong> Across the Claude Code windows, 20-point posts rose 8% while Show HN submissions rose 89%.</p></article>
             <article><span>03</span><p><strong>The dates are annotations, not experiments.</strong> Releases overlap with model improvements, startup cycles, moderation, spam, and other changes.</p></article>
           </div>
         </section>
@@ -798,7 +799,7 @@ export function ShowHnStory() {
           <dl>
             <div><dt>Show HN</dt><dd>A surviving URL story whose normalized title begins with “Show HN,” with or without a colon.</dd></div>
             <div><dt>All submissions</dt><dd>Surviving, non-dead URL stories. Ask HN and other text-only stories are not in this local archive, so the denominator is labeled accordingly.</dd></div>
-            <div><dt>Successful Show HN</dt><dd>A qualifying Show HN with a recorded score of at least 20 points. Section 03 divides these stories by all surviving URL-story submissions in the same period.</dd></div>
+            <div><dt>Successful Show HN</dt><dd>A qualifying Show HN with a recorded score of at least 20 points. This is a proxy for HN reception, not a judgment of intrinsic product quality.</dd></div>
             <div><dt>Pre/post windows</dt><dd>Equal 12-month windows ending immediately before and beginning in the launch month. They describe timing; they do not isolate causal effects.</dd></div>
             <div><dt>Source</dt><dd>The local OpenIndex Hacker News archive, materialized in DuckDB and refreshed through August 12, 2026. Monthly charts stop at July 2026, the latest complete month. Incomplete December 2022 point totals were repaired from Algolia and Hacker News item records.</dd></div>
           </dl>

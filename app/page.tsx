@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { ShowHnStory } from "./ShowHnStory";
 
 export const metadata: Metadata = {
-  title: "Show HN after AI coding — OrangeCrumbs",
+  title: "Show HN volume surged; 20-point posts barely moved — OrangeCrumbs",
   description:
-    "An interactive look at how Show HN submissions changed after ChatGPT and Claude Code.",
+    "Show HN submissions peaked at 6.3× their ChatGPT-launch level, while posts reaching 20 points grew far less.",
 };
 
 export default function Home() {
   return <ShowHnStory />;
 }
-

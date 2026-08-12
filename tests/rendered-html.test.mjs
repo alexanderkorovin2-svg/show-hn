@@ -31,11 +31,11 @@ test("server-renders the Show HN data story", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Show HN after AI coding — OrangeCrumbs<\/title>/i);
-  assert.match(html, /Show HN got a lot busier/);
-  assert.match(html, /Show HN became a larger slice of Hacker News/);
-  assert.match(html, /successful Show HNs remained a relatively flat share of HN/i);
-  assert.match(html, /Before and after the milestones/);
+  assert.match(html, /<title>Show HN volume surged; 20-point posts barely moved — OrangeCrumbs<\/title>/i);
+  assert.match(html, /Show HN volume hit 6×/);
+  assert.match(html, /Show HN became a much larger slice of Hacker News/);
+  assert.match(html, /20-point Show HNs barely moved by comparison/i);
+  assert.match(html, /Submission growth outran 20-point posts/);
   assert.match(html, /What counts—and what does not/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
@@ -48,7 +48,7 @@ test("keeps the finished page free of starter preview assets", async () => {
   ]);
 
   assert.match(page, /ShowHnStory/);
-  assert.match(layout, /Show HN after AI coding/);
+  assert.match(layout, /Show HN volume surged/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   await assert.rejects(
     access(new URL("../app/_sites-preview/SkeletonPreview.tsx", templateRoot)),
