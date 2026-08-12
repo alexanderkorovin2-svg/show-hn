@@ -656,10 +656,6 @@ function MilestoneComparison() {
 
 export function ShowHnStory() {
   const [selectedIndex, setSelectedIndex] = useState(DATA.length - 1);
-  const latestRollingShare = useMemo(
-    () => DATA[DATA.length - 1].rollingShare ?? DATA[DATA.length - 1].share,
-    [],
-  );
   const latestRollingSuccessfulAverage = useMemo(
     () =>
       DATA[DATA.length - 1].rollingSuccessfulAverage ??
@@ -702,7 +698,6 @@ export function ShowHnStory() {
                 <p>Monthly share of all surviving URL-story submissions. Hover or use the month slider.</p>
               </div>
             </div>
-            <strong className="section-stat">{formatShare(latestRollingShare)}<small>latest 12-month share</small></strong>
           </header>
           <ShareChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
           <aside className="chart-takeaway">
