@@ -151,8 +151,6 @@ h1 span {
 }
 
 .chart-section,
-.comparison-section,
-.interpretation,
 .methodology {
   margin-bottom: 10px;
   border: 1px solid var(--line);
@@ -550,150 +548,11 @@ h1 span {
   pointer-events: none;
 }
 
-.comparison-heading {
-  align-items: center;
-}
-
-.milestone-tabs {
-  display: inline-flex;
-  border: 1px solid var(--line);
-}
-
-.milestone-tabs button {
-  min-height: 34px;
-  padding: 7px 11px;
-  border: 0;
-  background: var(--paper);
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.milestone-tabs button + button {
-  border-left: 1px solid var(--line);
-}
-
-.milestone-tabs button:hover,
-.milestone-tabs button.is-active {
-  background: var(--orange);
-  color: var(--paper);
-}
-
-.comparison-context {
-  min-height: 48px;
-  padding: 9px 22px;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px 18px;
-  border-bottom: 1px solid var(--line);
-  background: #fbfbf7;
-  font-size: 9px;
-}
-
-.comparison-context > strong {
-  color: var(--orange);
-}
-
-.comparison-context > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--muted);
-}
-
-.comparison-context i {
-  width: 15px;
-  height: 4px;
-  display: inline-block;
-  background: #b6b6ae;
-}
-
-.comparison-context i.is-after {
-  background: var(--orange);
-}
-
-.comparison-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.comparison-card {
-  min-height: 174px;
-  padding: 18px 20px;
-  border-bottom: 1px solid var(--line);
-}
-
-.comparison-card:nth-child(odd) {
-  border-right: 1px solid var(--line);
-}
-
-.comparison-card:nth-last-child(-n + 2) {
-  border-bottom: 0;
-}
-
-.comparison-card > header {
-  display: flex;
-  justify-content: space-between;
-  gap: 14px;
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.comparison-card > header strong {
-  color: var(--orange);
-  font-size: 16px;
-}
-
-.comparison-values {
-  margin: 15px 0 12px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
-.comparison-values div {
-  display: grid;
-}
-
-.comparison-values small {
-  color: var(--muted);
-  font-size: 8px;
-  text-transform: uppercase;
-}
-
-.comparison-values strong {
-  font-size: 19px;
-}
-
-.comparison-bars {
-  display: grid;
-  gap: 5px;
-}
-
-.comparison-bars i {
-  height: 6px;
-  display: block;
-}
-
-.bar-before {
-  background: #b6b6ae;
-}
-
-.bar-after {
-  width: 100%;
-  background: var(--orange);
-}
-
-.interpretation > header,
 .methodology > div:first-child {
   padding: 22px 22px 17px;
   border-bottom: 1px solid var(--line);
 }
 
-.interpretation > header span,
 .methodology > div:first-child span {
   color: var(--orange);
   font-size: 9px;
@@ -702,43 +561,9 @@ h1 span {
   text-transform: uppercase;
 }
 
-.interpretation h2,
 .methodology h2 {
   margin: 4px 0 0;
   font-size: 21px;
-}
-
-.interpretation-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.interpretation-grid article {
-  min-height: 164px;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 25px minmax(0, 1fr);
-  gap: 12px;
-}
-
-.interpretation-grid article + article {
-  border-left: 1px solid var(--line);
-}
-
-.interpretation-grid span {
-  color: var(--orange);
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.interpretation-grid p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 10px;
-}
-
-.interpretation-grid strong {
-  color: var(--ink);
 }
 
 .methodology {
@@ -819,15 +644,6 @@ footer {
     margin-inline: -8px;
   }
 
-  .interpretation-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .interpretation-grid article + article {
-    border-top: 1px solid var(--line);
-    border-left: 0;
-  }
-
   .methodology {
     grid-template-columns: 1fr;
   }
@@ -853,8 +669,6 @@ footer {
   }
 
   .chart-section,
-  .comparison-section,
-  .interpretation,
   .methodology {
     margin-inline: -18px;
     border-right: 0;
@@ -903,22 +717,6 @@ footer {
   .chart-takeaway {
     grid-template-columns: 1fr;
     gap: 5px;
-  }
-
-  .comparison-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .comparison-card:nth-child(odd) {
-    border-right: 0;
-  }
-
-  .comparison-card:nth-last-child(-n + 2) {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .comparison-card:last-child {
-    border-bottom: 0;
   }
 
   .methodology dl > div {

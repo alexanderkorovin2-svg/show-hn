@@ -43,10 +43,6 @@ function formatShare(value: number) {
   return `${value.toFixed(value >= 10 ? 1 : 2)}%`;
 }
 
-function changePercent(before: number, after: number) {
-  return Math.round((after / before - 1) * 100);
-}
-
 const SUCCESS_BY_MONTH = new Map(SUCCESSFUL_SHOW_HN_DATA);
 
 const DATA: readonly DataRow[] = MONTHLY_DATA.map(
@@ -562,98 +558,6 @@ function SuccessChart({
   );
 }
 
-function MilestoneComparison() {
-  const [activeId, setActiveId] = useState<(typeof MILESTONES)[number]["id"]>(
-    "claude-code",
-  );
-  const milestone = MILESTONES.find((item) => item.id === activeId) ?? MILESTONES[1];
-  const metrics = [
-    {
-      label: "Show HN submissions",
-      before: milestone.pre.show,
-      after: milestone.post.show,
-      format: formatNumber,
-    },
-    {
-      label: "20+ point Show HNs",
-      before: milestone.pre.successful,
-      after: milestone.post.successful,
-      format: formatNumber,
-    },
-    {
-      label: "20+ point hit rate",
-      before: milestone.pre.successRate,
-      after: milestone.post.successRate,
-      format: formatShare,
-    },
-    {
-      label: "Distinct submitters",
-      before: milestone.pre.authors,
-      after: milestone.post.authors,
-      format: formatNumber,
-    },
-  ];
-
-  return (
-    <section className="comparison-section" aria-labelledby="comparison-title">
-      <header className="section-heading comparison-heading">
-        <div>
-          <span className="section-number">04.</span>
-          <div>
-            <h2 id="comparison-title">Submission growth outran 20-point posts</h2>
-            <p>Equal 12-month windows around each milestone. Context, not a causal estimate.</p>
-          </div>
-        </div>
-        <div className="milestone-tabs" role="group" aria-label="Choose milestone">
-          {MILESTONES.map((item) => (
-            <button
-              type="button"
-              className={item.id === activeId ? "is-active" : ""}
-              aria-pressed={item.id === activeId}
-              onClick={() => setActiveId(item.id)}
-              key={item.id}
-            >
-              {item.id === "chatgpt" ? "ChatGPT" : "Claude Code"}
-            </button>
-          ))}
-        </div>
-      </header>
-
-      <div className="comparison-context">
-        <strong>{milestone.label}</strong>
-        <span>{milestone.displayDate}</span>
-        <span><i className="is-before" />Before: {milestone.preLabel}</span>
-        <span><i className="is-after" />After: {milestone.postLabel}</span>
-      </div>
-
-      <div className="comparison-grid">
-        {metrics.map((metric) => {
-          const change = changePercent(metric.before, metric.after);
-          const largest = Math.max(metric.before, metric.after);
-          const beforeWidth = (metric.before / largest) * 100;
-          const afterWidth = (metric.after / largest) * 100;
-          return (
-            <article className="comparison-card" key={metric.label}>
-              <header>
-                <span>{metric.label}</span>
-                <strong>{change > 0 ? "+" : ""}{change}%</strong>
-              </header>
-              <div className="comparison-values">
-                <div><small>Before</small><strong>{metric.format(metric.before)}</strong></div>
-                <div><small>After</small><strong>{metric.format(metric.after)}</strong></div>
-              </div>
-              <div className="comparison-bars" aria-hidden="true">
-                <i className="bar-before" style={{ width: `${beforeWidth}%` }} />
-                <i className="bar-after" style={{ width: `${afterWidth}%` }} />
-              </div>
-            </article>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
 export function ShowHnStory() {
   const [selectedIndex, setSelectedIndex] = useState(DATA.length - 1);
   const latestRollingSuccessfulAverage = useMemo(
@@ -731,20 +635,6 @@ export function ShowHnStory() {
             <span>Volume surged; hits did not</span>
             <p><strong>At the February 2026 peak, 211 Show HNs reached 20 points versus 128 in ChatGPT&apos;s launch month.</strong> Across equal Claude Code windows, 20-point posts rose just 8% while submissions rose 89%.</p>
           </aside>
-        </section>
-
-        <MilestoneComparison />
-
-        <section className="interpretation" aria-labelledby="reading-title">
-          <header>
-            <span>What the data supports</span>
-            <h2 id="reading-title">A much bigger launch funnel without a matching rise in 20-point posts</h2>
-          </header>
-          <div className="interpretation-grid">
-            <article><span>01</span><p><strong>The input side exploded.</strong> Show HN reached 6.3× its ChatGPT-launch volume, while HN URL submissions rose only 22% over the same monthly comparison.</p></article>
-            <article><span>02</span><p><strong>The visible-success count barely kept pace.</strong> Across the Claude Code windows, 20-point posts rose 8% while Show HN submissions rose 89%.</p></article>
-            <article><span>03</span><p><strong>The dates are annotations, not experiments.</strong> Releases overlap with model improvements, startup cycles, moderation, spam, and other changes.</p></article>
-          </div>
         </section>
 
         <section className="methodology" id="methodology" aria-labelledby="methodology-title">
