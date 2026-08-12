@@ -635,7 +635,6 @@ export function ShowHnStory() {
             <div><dt>Show HN</dt><dd>A surviving URL story whose normalized title begins with “Show HN,” with or without a colon.</dd></div>
             <div><dt>All submissions</dt><dd>Surviving, non-dead URL stories. Ask HN and other text-only stories are not in this local archive, so the denominator is labeled accordingly.</dd></div>
             <div><dt>Successful Show HN</dt><dd>A qualifying Show HN with a recorded score of at least 20 points. This is a proxy for HN reception, not a judgment of intrinsic product quality.</dd></div>
-            <div><dt>Pre/post windows</dt><dd>Equal 12-month windows ending immediately before and beginning in the launch month. They describe timing; they do not isolate causal effects.</dd></div>
             <div>
               <dt>Source</dt>
               <dd>
