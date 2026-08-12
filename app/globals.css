@@ -550,50 +550,6 @@ h1 span {
   pointer-events: none;
 }
 
-.finding-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border-top: 1px solid var(--line);
-}
-
-.finding-grid.is-single {
-  grid-template-columns: 1fr;
-}
-
-.finding-grid article {
-  min-height: 158px;
-  padding: 20px 22px;
-}
-
-.finding-grid article + article {
-  border-left: 1px solid var(--line);
-}
-
-.finding-grid span {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--orange);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.finding-grid strong {
-  display: block;
-  max-width: 410px;
-  margin-bottom: 8px;
-  font-size: 17px;
-  line-height: 1.3;
-}
-
-.finding-grid p {
-  max-width: 430px;
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: 10px;
-}
-
 .comparison-heading {
   align-items: center;
 }
@@ -863,12 +819,10 @@ footer {
     margin-inline: -8px;
   }
 
-  .finding-grid,
   .interpretation-grid {
     grid-template-columns: 1fr;
   }
 
-  .finding-grid article + article,
   .interpretation-grid article + article {
     border-top: 1px solid var(--line);
     border-left: 0;

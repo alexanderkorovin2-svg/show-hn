@@ -713,13 +713,6 @@ export function ShowHnStory() {
             </div>
           </header>
           <VolumeChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
-          <div className="finding-grid is-single">
-            <article>
-              <span>Not site-wide traffic</span>
-              <strong>All URL submissions rose only 22% over the same launch-to-peak comparison.</strong>
-              <p>Show HN rose 534%, making the divergence specific to the launch funnel rather than HN overall.</p>
-            </article>
-          </div>
         </section>
 
         <section className="chart-section" aria-labelledby="success-title">
