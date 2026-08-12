@@ -3,8 +3,9 @@
 An interactive OrangeCrumbs data story about the widening gap between Show HN
 submission volume and posts that receive meaningful attention. Monthly Show HN
 volume peaked at 6.3× its ChatGPT-launch level, while posts reaching 20 points
-grew far less. The story compares raw volume, distinct submitters, and 20-point
-posts across the ChatGPT and Claude Code milestones.
+grew far less. The story compares raw volume, distinct submitters, and the share
+of all submissions represented by 20-point Show HNs across the ChatGPT and
+Claude Code milestones.
 
 The monthly series runs from January 2018 through July 2026. August 2026 is
 excluded because it is incomplete. Launch dates are contextual annotations,

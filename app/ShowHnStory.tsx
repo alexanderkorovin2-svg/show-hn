@@ -20,8 +20,8 @@ type DataRow = {
   authors: number;
   share: number;
   rollingShare: number | null;
-  successful: number;
-  rollingSuccessfulAverage: number | null;
+  successfulShare: number;
+  rollingSuccessfulShare: number | null;
 };
 
 const numberFormatter = new Intl.NumberFormat("en-US");
@@ -62,8 +62,9 @@ const DATA: readonly DataRow[] = MONTHLY_DATA.map(
       authors,
       share: (show / total) * 100,
       rollingShare: index >= 11 ? (rollingShow / rollingTotal) * 100 : null,
-      successful,
-      rollingSuccessfulAverage: index >= 11 ? rollingSuccessful / 12 : null,
+      successfulShare: (successful / total) * 100,
+      rollingSuccessfulShare:
+        index >= 11 ? (rollingSuccessful / rollingTotal) * 100 : null,
     };
   },
 );
@@ -433,22 +434,22 @@ function SuccessChart({
   const plotWidth = WIDTH - CHART_MARGIN.left - CHART_MARGIN.right;
   const x = (index: number) =>
     CHART_MARGIN.left + (index / (DATA.length - 1)) * plotWidth;
-  const successfulPanel = { top: 50, bottom: 300, max: 250 };
+  const successfulPanel = { top: 50, bottom: 300, max: 1 };
   const ySuccessful = (value: number) =>
     successfulPanel.top +
     ((successfulPanel.max - value) / successfulPanel.max) *
       (successfulPanel.bottom - successfulPanel.top);
   const active = DATA[selectedIndex];
   const activeX = x(selectedIndex);
-  const activeSuccessfulCount =
-    active.rollingSuccessfulAverage ?? active.successful;
+  const activeSuccessfulShare =
+    active.rollingSuccessfulShare ?? active.successfulShare;
   const monthlySuccessfulPath = pathFor(DATA, x, (row) =>
-    ySuccessful(row.successful),
+    ySuccessful(row.successfulShare),
   );
   const rollingSuccessfulPath = pathFor(DATA, x, (row) =>
-    row.rollingSuccessfulAverage === null
+    row.rollingSuccessfulShare === null
       ? null
-      : ySuccessful(row.rollingSuccessfulAverage),
+      : ySuccessful(row.rollingSuccessfulShare),
   );
   const yearTicks = DATA.filter(
     (row) => row.month.endsWith("-01") && Number(row.month.slice(0, 4)) % 2 === 0,
@@ -467,8 +468,8 @@ function SuccessChart({
   return (
     <div className="chart-body success-chart-body">
       <div className="chart-legend" aria-label="Chart legend">
-        <span><i className="legend-line is-monthly" />Monthly 20+ posts</span>
-        <span><i className="legend-line is-successful" />12-month monthly average</span>
+        <span><i className="legend-line is-monthly" />Monthly share</span>
+        <span><i className="legend-line is-successful" />12-month rolling share</span>
         <span><i className="legend-line is-event" />AI product launch</span>
       </div>
 
@@ -479,19 +480,18 @@ function SuccessChart({
           role="img"
           aria-labelledby="success-chart-title success-chart-desc"
         >
-          <title id="success-chart-title">Monthly Show HN posts reaching 20 points</title>
+          <title id="success-chart-title">Successful Show HNs as a share of all submissions</title>
           <desc id="success-chart-desc">
-            Monthly counts and the rolling 12-month monthly average show that the
-            number of Show HN stories reaching 20 points moved far less than total
-            Show HN submission volume.
+            Monthly and rolling 12-month shares show the portion of all submissions
+            that were Show HN posts reaching at least 20 points.
           </desc>
-          <text className="panel-label" x={CHART_MARGIN.left} y="27">SHOW HN POSTS REACHING 20+ POINTS</text>
+          <text className="panel-label" x={CHART_MARGIN.left} y="27">20+ POINT SHOW HNS / ALL SUBMISSIONS</text>
           <text className="panel-value is-successful" x={WIDTH - CHART_MARGIN.right} y="27" textAnchor="end">
-            {active.rollingSuccessfulAverage === null ? "Monthly" : "12-month average"}: {formatNumber(activeSuccessfulCount)} per month in {formatMonth(active.month)}
+            {active.rollingSuccessfulShare === null ? "Monthly share" : "12-month share"}: {formatShare(activeSuccessfulShare)} in {formatMonth(active.month)}
           </text>
 
-          {[0, 50, 100, 150, 200, 250].map((tick) => (
-            <g key={`successful-count-${tick}`}>
+          {[0, 0.25, 0.5, 0.75, 1].map((tick) => (
+            <g key={`successful-share-${tick}`}>
               <line
                 className="grid-line"
                 x1={CHART_MARGIN.left}
@@ -505,7 +505,7 @@ function SuccessChart({
                 y={ySuccessful(tick) + 4}
                 textAnchor="end"
               >
-                {tick}
+                {formatShare(tick)}
               </text>
             </g>
           ))}
@@ -541,7 +541,7 @@ function SuccessChart({
           <circle
             className="active-point is-successful"
             cx={activeX}
-            cy={ySuccessful(activeSuccessfulCount)}
+            cy={ySuccessful(activeSuccessfulShare)}
             r="5"
           />
           <rect
@@ -618,8 +618,8 @@ export function ShowHnStory() {
             <div>
               <span className="section-number">03.</span>
               <div>
-                <h2 id="success-title">But 20-point Show HNs barely moved by comparison</h2>
-                <p>Monthly count of Show HN posts reaching 20+ points, with a rolling 12-month monthly average.</p>
+                <h2 id="success-title">But 20-point Show HNs remained a tiny share of submissions</h2>
+                <p>Monthly 20-point Show HNs as a share of all submissions, with a rolling 12-month share.</p>
               </div>
             </div>
           </header>
