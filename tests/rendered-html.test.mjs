@@ -47,6 +47,8 @@ test("server-renders the Show HN data story", async () => {
   assert.match(html, /Monthly submissions and Show HN volume/);
   assert.doesNotMatch(html, /Monthly URL stories and Show HN volume/);
   assert.doesNotMatch(html, /Explore month|aria-label="Selected month"/i);
+  assert.equal((html.match(/ChatGPT launch/g) ?? []).length, 2);
+  assert.equal((html.match(/Claude Code preview/g) ?? []).length, 2);
   assert.match(html, /the share of successful Show HN submissions \(20\+ points\) remained relatively flat/i);
   assert.match(html, /Successful Show HNs as a share of all submissions/i);
   assert.match(html, /20\+ POINT SHOW HNS \/ ALL SUBMISSIONS/i);

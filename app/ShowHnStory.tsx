@@ -386,7 +386,7 @@ function VolumeChart({
         </g>
         <path className="show-line" d={pathFor(DATA, x, (row) => yShow(row.show))} />
         <path className="authors-line" d={pathFor(DATA, x, (row) => yShow(row.authors))} />
-        <EventMarkers x={x} top={totalPanel.top} bottom={showPanel.bottom} compact />
+        <EventMarkers x={x} top={totalPanel.top} bottom={showPanel.bottom} />
         <line
           className="hover-guide"
           x1={activeX}
