@@ -153,21 +153,15 @@ h1 span {
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
   margin-top: 42px;
-  border: 1px solid var(--line);
-  background: var(--paper);
 }
 
 .hero-stats article {
-  min-height: 122px;
-  padding: 16px 18px;
+  min-height: 96px;
   display: grid;
-  align-content: space-between;
-  gap: 8px;
-}
-
-.hero-stats article + article {
-  border-left: 1px solid var(--line);
+  align-content: start;
+  gap: 12px;
 }
 
 .hero-stats span {
@@ -883,15 +877,7 @@ footer {
 
   .hero-stats {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .hero-stats article:nth-child(3) {
-    border-top: 1px solid var(--line);
-    border-left: 0;
-  }
-
-  .hero-stats article:nth-child(4) {
-    border-top: 1px solid var(--line);
+    gap: 28px 32px;
   }
 
   .section-heading {
@@ -949,13 +935,7 @@ footer {
 
   .hero-stats {
     grid-template-columns: 1fr;
-  }
-
-  .hero-stats article + article,
-  .hero-stats article:nth-child(3),
-  .hero-stats article:nth-child(4) {
-    border-top: 1px solid var(--line);
-    border-left: 0;
+    gap: 26px;
   }
 
   .chart-section,
