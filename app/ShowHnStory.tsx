@@ -115,7 +115,7 @@ function EventMarkers({
   bottom: number;
   compact?: boolean;
 }) {
-  return MILESTONES.map((milestone, markerIndex) => {
+  return MILESTONES.map((milestone) => {
     const index = DATA.findIndex((row) => row.month === milestone.date);
     const markerX = x(index);
     return (
@@ -123,9 +123,9 @@ function EventMarkers({
         <line x1={markerX} x2={markerX} y1={top} y2={bottom} />
         {!compact && (
           <text
-            x={markerX + (markerIndex === 0 ? 7 : -7)}
+            x={markerX - 7}
             y={top + 11}
-            textAnchor={markerIndex === 0 ? "start" : "end"}
+            textAnchor="end"
           >
             {milestone.label}
           </text>
