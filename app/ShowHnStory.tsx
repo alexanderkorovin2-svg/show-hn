@@ -261,19 +261,6 @@ function ShareChart({
           />
         </svg>
       </div>
-
-      <label className="month-scrubber">
-        <span>Explore month</span>
-        <input
-          type="range"
-          min="0"
-          max={DATA.length - 1}
-          value={selectedIndex}
-          onChange={(event) => onSelect(Number(event.target.value))}
-          aria-label="Selected month"
-        />
-        <strong>{formatMonth(active.month)}</strong>
-      </label>
     </div>
   );
 }
@@ -606,7 +593,7 @@ export function ShowHnStory() {
               <span className="section-number">02.</span>
               <div>
                 <h2 id="share-title">Show HN became a much larger slice of Hacker News</h2>
-                <p>Monthly share of all surviving URL-story submissions. Hover or use the month slider.</p>
+                <p>Monthly share of all surviving URL-story submissions. Hover to inspect a month.</p>
               </div>
             </div>
           </header>
