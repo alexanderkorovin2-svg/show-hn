@@ -700,10 +700,6 @@ export function ShowHnStory() {
             </div>
           </header>
           <ShareChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
-          <aside className="chart-takeaway">
-            <span>Sixfold peak</span>
-            <p><strong>February 2026 had 5,817 Show HNs—6.3× November 2022, the month ChatGPT launched.</strong> They accounted for nearly one in five surviving URL submissions.</p>
-          </aside>
         </section>
 
         <section className="chart-section" aria-labelledby="volume-title">
