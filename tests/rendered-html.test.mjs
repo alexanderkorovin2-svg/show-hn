@@ -35,6 +35,8 @@ test("server-renders the Show HN data story", async () => {
   assert.match(html, /Show HN volume increased 6x since ChatGPT/);
   assert.match(html, /submissions jumped from 0\.9k to 5\.8k/);
   assert.match(html, /20\+ points rose from 128 to 211/);
+  assert.match(html, /138,445 Show HN posts across 2\.49 million/);
+  assert.match(html, /January 2018–July 2026/);
   assert.match(html, /Show HN became a much larger slice of Hacker News/);
   assert.match(html, /Show HN submissions increased by as much as 6\.3x at peak volume/);
   assert.match(html, /Monthly submissions and Show HN volume/);

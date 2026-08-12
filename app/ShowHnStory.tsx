@@ -582,8 +582,8 @@ export function ShowHnStory() {
             20+ points rose from 128 to 211, just 1.6×.
           </p>
           <p className="dateline">
-            192,390 Show HN posts across 4.45 million surviving URL submissions ·
-            October 2006–August 12, 2026
+            138,445 Show HN posts across 2.49 million surviving URL submissions ·
+            January 2018–July 2026
           </p>
         </section>
 
