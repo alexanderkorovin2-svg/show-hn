@@ -315,7 +315,7 @@ function VolumeChart({
   return (
     <div className="volume-wrap">
       <div className="volume-key" aria-label="Chart legend">
-        <span><i className="swatch is-total" />All URL stories</span>
+        <span><i className="swatch is-total" />All submissions</span>
         <span><i className="swatch is-show" />Show HN stories</span>
         <span><i className="swatch is-authors" />Distinct Show HN submitters</span>
       </div>
@@ -325,12 +325,12 @@ function VolumeChart({
         role="img"
         aria-labelledby="volume-chart-title volume-chart-desc"
       >
-        <title id="volume-chart-title">Monthly URL stories and Show HN volume</title>
+        <title id="volume-chart-title">Monthly submissions and Show HN volume</title>
         <desc id="volume-chart-desc">
-          Two synchronized panels show that overall URL story volume stayed
+          Two synchronized panels show that overall submission volume stayed
           relatively stable while Show HN submissions and distinct submitters rose.
         </desc>
-        <text className="panel-label" x={CHART_MARGIN.left} y="27">ALL URL STORIES</text>
+        <text className="panel-label" x={CHART_MARGIN.left} y="27">ALL SUBMISSIONS</text>
         <text className="panel-value" x={WIDTH - CHART_MARGIN.right} y="27" textAnchor="end">
           {formatNumber(active.total)} in {formatMonth(active.month)}
         </text>
