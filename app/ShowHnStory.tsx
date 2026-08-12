@@ -605,7 +605,7 @@ export function ShowHnStory() {
             <div>
               <span className="section-number">02.</span>
               <div>
-                <h2 id="volume-title">The sixfold peak came from a much wider launch funnel</h2>
+                <h2 id="volume-title">Show HN submissions increased by as much as 6.3x at peak volume</h2>
                 <p>The panels use separate scales but share the same timeline and selected month.</p>
               </div>
             </div>
@@ -618,7 +618,7 @@ export function ShowHnStory() {
             <div>
               <span className="section-number">03.</span>
               <div>
-                <h2 id="success-title">But 20-point Show HNs remained a tiny share of submissions</h2>
+                <h2 id="success-title">…however, the share of successful Show HN submissions (20+ points) remained relatively flat</h2>
                 <p>Monthly 20-point Show HNs as a share of all submissions, with a rolling 12-month share.</p>
               </div>
             </div>

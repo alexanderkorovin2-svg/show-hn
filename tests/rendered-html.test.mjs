@@ -36,9 +36,10 @@ test("server-renders the Show HN data story", async () => {
   assert.match(html, /submissions jumped from 0\.9k to 5\.8k/);
   assert.match(html, /20\+ points rose from 128 to 211/);
   assert.match(html, /Show HN became a much larger slice of Hacker News/);
+  assert.match(html, /Show HN submissions increased by as much as 6\.3x at peak volume/);
   assert.match(html, /Monthly submissions and Show HN volume/);
   assert.doesNotMatch(html, /Monthly URL stories and Show HN volume/);
-  assert.match(html, /20-point Show HNs remained a tiny share of submissions/i);
+  assert.match(html, /the share of successful Show HN submissions \(20\+ points\) remained relatively flat/i);
   assert.match(html, /Successful Show HNs as a share of all submissions/i);
   assert.match(html, /20\+ POINT SHOW HNS \/ ALL SUBMISSIONS/i);
   assert.match(html, /12-month share<!-- -->: <!-- -->0\.61%/i);
