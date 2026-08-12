@@ -33,6 +33,7 @@ test("server-renders the Show HN data story", async () => {
   const html = await response.text();
   assert.match(html, /<title>Show HN volume surged; 20-point posts barely moved — OrangeCrumbs<\/title>/i);
   assert.match(html, /Show HN volume increased 6x since ChatGPT/);
+  assert.match(html, /successful submissions remained relatively flat/);
   assert.match(html, /submissions jumped from 0\.9k to 5\.8k/);
   assert.match(html, /20\+ points rose from 128 to 211/);
   assert.match(html, /138,445 Show HN posts across 2\.49 million/);
