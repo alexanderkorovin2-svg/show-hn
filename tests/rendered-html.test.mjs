@@ -46,6 +46,7 @@ test("server-renders the Show HN data story", async () => {
   assert.match(html, /What counts—and what does not/);
   assert.match(html, /href="https:\/\/huggingface\.co\/datasets\/open-index\/hacker-news"/);
   assert.match(html, /href="https:\/\/hn\.algolia\.com\/api"/);
+  assert.match(html, /class="footer-brand" href="https:\/\/www\.orangecrumbs\.com\/"/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 

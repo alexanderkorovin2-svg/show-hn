@@ -650,7 +650,7 @@ export function ShowHnStory() {
       </main>
 
       <footer>
-        <span>OrangeCrumbs · Small tools for people who read Hacker News.</span>
+        <span><a className="footer-brand" href="https://www.orangecrumbs.com/">OrangeCrumbs</a> · Small tools for people who read Hacker News.</span>
         <span>Not affiliated with Y Combinator.</span>
       </footer>
     </div>
