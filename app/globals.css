@@ -129,7 +129,7 @@ p {
 h1 {
   max-width: 950px;
   margin-bottom: 22px;
-  font-size: clamp(40px, 6.8vw, 76px);
+  font-size: clamp(36px, 5.6vw, 62px);
   line-height: 1.04;
   letter-spacing: -0.022em;
 }
@@ -619,7 +619,7 @@ footer {
   }
 
   h1 {
-    font-size: 43px;
+    font-size: 36px;
     letter-spacing: -0.012em;
   }
 
