@@ -577,9 +577,9 @@ export function ShowHnStory() {
           <p className="eyebrow">Data story · August 2026</p>
           <h1>Show HN volume increased 6× since ChatGPT, <span>while the number of successful submissions barely moved.</span></h1>
           <p className="dek">
-            From ChatGPT&apos;s launch month to the February 2026 peak, monthly Show HN
-            submissions jumped from 917 to 5,817—a 6.3× increase. Posts reaching
-            20 points rose from 128 to 211, just 1.6×.
+            From ChatGPT&apos;s launch to the February 2026 peak, monthly Show HN
+            submissions jumped from 0.9k to 5.8k — a 6.3× increase. Posts reaching
+            20+ points rose from 128 to 211, just 1.6×.
           </p>
           <p className="dateline">
             192,390 Show HN posts across 4.45 million surviving URL submissions ·
