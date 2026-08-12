@@ -130,8 +130,8 @@ h1 {
   max-width: 950px;
   margin-bottom: 22px;
   font-size: clamp(40px, 6.8vw, 76px);
-  line-height: 1.01;
-  letter-spacing: -0.052em;
+  line-height: 1.04;
+  letter-spacing: -0.022em;
 }
 
 h1 span {
@@ -934,6 +934,7 @@ footer {
 
   h1 {
     font-size: 43px;
+    letter-spacing: -0.012em;
   }
 
   .dek {
