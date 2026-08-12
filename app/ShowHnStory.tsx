@@ -691,29 +691,6 @@ export function ShowHnStory() {
             192,390 Show HN posts across 4.45 million surviving URL submissions ·
             October 2006–August 12, 2026
           </p>
-
-          <div className="hero-stats" aria-label="Key findings">
-            <article>
-              <span>Peak monthly volume</span>
-              <strong>6.3×</strong>
-              <small>917 → 5,817 since ChatGPT</small>
-            </article>
-            <article>
-              <span>20+ point posts</span>
-              <strong>1.6×</strong>
-              <small>128 → 211 over the same months</small>
-            </article>
-            <article>
-              <span>20+ point hit rate</span>
-              <strong>14.0% → 3.6%</strong>
-              <small>ChatGPT launch → peak</small>
-            </article>
-            <article>
-              <span>Claude Code windows</span>
-              <strong>+89% vs. +8%</strong>
-              <small>all Show HNs vs. 20+ posts</small>
-            </article>
-          </div>
         </section>
 
         <section className="chart-section" aria-labelledby="share-title">

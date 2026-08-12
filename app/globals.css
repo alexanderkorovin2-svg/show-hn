@@ -150,40 +150,6 @@ h1 span {
   font-size: 10px;
 }
 
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 28px;
-  margin-top: 42px;
-}
-
-.hero-stats article {
-  min-height: 96px;
-  display: grid;
-  align-content: start;
-  gap: 12px;
-}
-
-.hero-stats span {
-  color: var(--muted);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.hero-stats strong {
-  color: var(--orange);
-  font-size: clamp(24px, 3.2vw, 36px);
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.hero-stats small {
-  color: var(--muted);
-  font-size: 9px;
-}
-
 .chart-section,
 .comparison-section,
 .interpretation,
@@ -875,11 +841,6 @@ footer {
     padding-top: 54px;
   }
 
-  .hero-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px 32px;
-  }
-
   .section-heading {
     align-items: flex-start;
     flex-direction: column;
@@ -931,11 +892,6 @@ footer {
 
   .dek {
     font-size: 15px;
-  }
-
-  .hero-stats {
-    grid-template-columns: 1fr;
-    gap: 26px;
   }
 
   .chart-section,
