@@ -189,24 +189,6 @@ h1 span {
   font-size: 11px;
 }
 
-.section-stat {
-  flex: 0 0 auto;
-  display: grid;
-  justify-items: end;
-  color: var(--orange);
-  font-size: 22px;
-  line-height: 1.1;
-}
-
-.section-stat small {
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 8px;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
 .chart-body {
   padding: 16px 20px 0;
 }
@@ -640,10 +622,6 @@ footer {
   .section-heading {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .section-stat {
-    justify-items: start;
   }
 
   .chart-body,

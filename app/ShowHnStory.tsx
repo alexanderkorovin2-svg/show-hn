@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type PointerEvent } from "react";
+import { useState, type PointerEvent } from "react";
 import {
   MILESTONES,
   MONTHLY_DATA,
@@ -560,12 +560,6 @@ function SuccessChart({
 
 export function ShowHnStory() {
   const [selectedIndex, setSelectedIndex] = useState(DATA.length - 1);
-  const latestRollingSuccessfulAverage = useMemo(
-    () =>
-      DATA[DATA.length - 1].rollingSuccessfulAverage ??
-      DATA[DATA.length - 1].successful,
-    [],
-  );
 
   return (
     <div className="site-frame">
@@ -628,7 +622,6 @@ export function ShowHnStory() {
                 <p>Monthly count of Show HN posts reaching 20+ points, with a rolling 12-month monthly average.</p>
               </div>
             </div>
-            <strong className="section-stat">{formatNumber(latestRollingSuccessfulAverage)}<small>20+ posts / month, latest 12m</small></strong>
           </header>
           <SuccessChart selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
           <aside className="chart-takeaway success-takeaway">
