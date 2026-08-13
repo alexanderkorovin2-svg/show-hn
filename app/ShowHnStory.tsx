@@ -13,6 +13,14 @@ const MUTED = "#77776f";
 const WIDTH = 1000;
 const CHART_MARGIN = { top: 34, right: 24, bottom: 48, left: 62 };
 
+const COVID_MILESTONE = {
+  id: "covid-19",
+  label: "COVID-19 pandemic",
+  date: "2020-03",
+} as const;
+
+const VOLUME_MILESTONES = [COVID_MILESTONE, ...MILESTONES] as const;
+
 type DataRow = {
   month: string;
   total: number;
@@ -109,13 +117,15 @@ function EventMarkers({
   top,
   bottom,
   compact = false,
+  milestones = MILESTONES,
 }: {
   x: (index: number) => number;
   top: number;
   bottom: number;
   compact?: boolean;
+  milestones?: readonly { id: string; label: string; date: string }[];
 }) {
-  return MILESTONES.map((milestone) => {
+  return milestones.map((milestone) => {
     const index = DATA.findIndex((row) => row.month === milestone.date);
     const markerX = x(index);
     return (
@@ -386,7 +396,12 @@ function VolumeChart({
         </g>
         <path className="show-line" d={pathFor(DATA, x, (row) => yShow(row.show))} />
         <path className="authors-line" d={pathFor(DATA, x, (row) => yShow(row.authors))} />
-        <EventMarkers x={x} top={totalPanel.top} bottom={showPanel.bottom} />
+        <EventMarkers
+          x={x}
+          top={totalPanel.top}
+          bottom={showPanel.bottom}
+          milestones={VOLUME_MILESTONES}
+        />
         <line
           className="hover-guide"
           x1={activeX}
