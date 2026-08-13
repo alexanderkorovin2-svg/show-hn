@@ -32,7 +32,7 @@ test("server-renders the Show HN data story", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Show HN volume surged; 20-point posts barely moved — OrangeCrumbs<\/title>/i);
-  assert.match(html, /Show HN volume increased 6x since ChatGPT/);
+  assert.match(html, /Show HN<sup>\*<\/sup> volume increased 6x since ChatGPT/);
   assert.match(html, /successful submissions remained relatively flat/);
   assert.match(html, /submissions jumped from 0\.9k to 5\.8k/);
   assert.match(html, /20\+ points rose from 128 to 211/);
@@ -50,7 +50,9 @@ test("server-renders the Show HN data story", async () => {
   assert.doesNotMatch(html, /Monthly URL stories and Show HN volume/);
   assert.doesNotMatch(html, /Explore month|aria-label="Selected month"/i);
   assert.equal((html.match(/ChatGPT launch/g) ?? []).length, 2);
-  assert.equal((html.match(/Claude Code preview/g) ?? []).length, 2);
+  assert.equal((html.match(/Claude Code take off/g) ?? []).length, 2);
+  assert.match(html, /Show HN is Hacker News’s format/);
+  assert.doesNotMatch(html, /Data story · August 2026|Data stories for Hacker News|AI product launch/);
   assert.match(html, /the share of successful Show HN submissions \(20\+ points\) remained relatively flat/i);
   assert.match(html, /Successful Show HNs as a share of all submissions/i);
   assert.match(html, /20\+ POINT SHOW HNS \/ ALL SUBMISSIONS/i);

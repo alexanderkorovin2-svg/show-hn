@@ -227,7 +227,7 @@ export const MILESTONES = [
   },
   {
     id: "claude-code",
-    label: "Claude Code preview",
-    date: "2025-02",
+    label: "Claude Code take off",
+    date: "2025-11",
   },
 ] as const;

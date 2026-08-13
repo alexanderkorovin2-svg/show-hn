@@ -130,11 +130,24 @@ h1 span {
   color: var(--orange);
 }
 
+h1 sup {
+  margin-left: 0.08em;
+  font-size: 0.4em;
+  vertical-align: super;
+}
+
 .dek {
   max-width: 820px;
   margin-bottom: 17px;
   font-size: clamp(16px, 2vw, 21px);
   line-height: 1.52;
+}
+
+.show-hn-definition {
+  max-width: 820px;
+  margin-bottom: 17px;
+  color: var(--muted);
+  font-size: 11px;
 }
 
 .dateline {

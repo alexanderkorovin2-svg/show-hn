@@ -184,7 +184,6 @@ function ShareChart({
       <div className="chart-legend" aria-label="Chart legend">
         <span><i className="legend-line is-monthly" />Monthly share</span>
         <span><i className="legend-line is-rolling" />12-month rolling share</span>
-        <span><i className="legend-line is-event" />AI product launch</span>
       </div>
 
       <div className="chart-canvas">
@@ -472,7 +471,6 @@ function SuccessChart({
       <div className="chart-legend" aria-label="Chart legend">
         <span><i className="legend-line is-monthly" />Monthly share</span>
         <span><i className="legend-line is-successful" />12-month rolling share</span>
-        <span><i className="legend-line is-event" />AI product launch</span>
       </div>
 
       <div className="chart-canvas">
@@ -570,17 +568,22 @@ export function ShowHnStory() {
           <span className="logo" aria-hidden="true">O</span>
           <strong>orangecrumbs</strong>
         </a>
-        <span className="topbar-note">Data stories for Hacker News</span>
       </header>
 
       <main>
         <section className="hero">
-          <p className="eyebrow">Data story · August 2026</p>
-          <h1>Show HN volume increased 6x since ChatGPT, <span>while the number of successful submissions remained relatively flat.</span></h1>
+          <h1>Show HN<sup>*</sup> volume increased 6x since ChatGPT, <span>while the number of successful submissions remained relatively flat.</span></h1>
           <p className="dek">
             From ChatGPT&apos;s launch to the February 2026 peak, monthly Show HN
             submissions jumped from 0.9k to 5.8k — a 6.3× increase. Posts reaching
             20+ points rose from 128 to 211, just 1.6×.
+          </p>
+          <p className="show-hn-definition">
+            <span aria-hidden="true">*</span> Show HN is Hacker News’s format for
+            sharing something you personally built that other HN users can actually
+            try. Hacker News (HN) is a discussion and link-sharing website focused on
+            technology, startups, programming, science, and related topics. It is run
+            by Y Combinator, the startup accelerator.
           </p>
           <p className="dateline">
             138,445 Show HN posts across 2.49 million surviving URL submissions ·
